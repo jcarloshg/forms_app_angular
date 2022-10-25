@@ -1,0 +1,52 @@
+<h2>Template</h2>
+<hr />
+
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="guardar(miFormulario)" #miFormulario="ngForm" autocomplete="off">
+            <!-- ========== Start producto ========== -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Producto</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="ej. Crema Nutella..." ngModel
+                        name="producto" />
+                    <span class="form-text text-danger">Debe llevar almenos 3 letras</span>
+                </div>
+            </div>
+            <!-- ========== End producto ========== -->
+
+            <!-- ========== Start precio ========== -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Precio</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" placeholder="ej. $ 43.58" ngModel name="precio" />
+                </div>
+            </div>
+            <!-- ========== End precio ========== -->
+
+            <!-- ========== Start existencias producto ========== -->
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Existencias</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" placeholder="ej. 5" ngModel name="existencias" />
+                </div>
+            </div>
+            <!-- ========== End existencias producto ========== -->
+
+
+            <!-- ========== Start buttons ========== -->
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end">Guardar</button>
+                </div>
+            </div>
+            <!-- ========== End buttons ========== -->
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <pre>{{miFormulario.value | json}}</pre>
+    </div>
+</div>
