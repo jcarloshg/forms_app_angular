@@ -6,13 +6,16 @@ import { TemplateRoutingModule } from './template-routing.module';
 import { BasicosComponent } from './basicos/basicos.component';
 import { SwitchesComponent } from './switches/switches.component';
 import { DinamicosComponent } from './dinamicos/dinamicos.component';
+import { CustomMinDorective } from './directives/custom-min.directive';
 
 
 @NgModule({
   declarations: [
     BasicosComponent,
     SwitchesComponent,
-    DinamicosComponent
+    DinamicosComponent,
+
+    CustomMinDorective
   ],
   imports: [
     CommonModule,
