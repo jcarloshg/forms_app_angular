@@ -2,12 +2,14 @@
 <hr />
 
 <form (ngSubmit)="guardar()" autocomplete="off" #miFormulario="ngForm">
+  <!-- ========== Start nombre ========== -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Nombre</label>
     <div class="col-sm-9">
       <input
         class="form-control"
         placeholder="Nombre del guey"
+        [(ngModel)]="persona.nombre"
         name="nombre"
         required
       />
@@ -22,6 +24,57 @@
       </span>
     </div>
   </div>
+  <!-- ========== End nombre ========== -->
+
+  <!-- ========== Start Agregar ========== -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="Agregar juego favorito"
+          [(ngModel)]="nuevoJuego"
+          (keyup.enter)="agregarNuevoJuego()"
+          name="nuevoJuego"
+        />
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="agregarNuevoJuego()"
+        >
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ========== End agregar ========== -->
+
+  <!-- ========== Start lisFavoritos ========== -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9">
+      <div
+        class="input-group mb-1"
+        *ngFor="let juego of persona.favoritos; let i = index"
+      >
+        <input
+          [(ngModel)]="juego.name"
+          name="favorito_{{ i }}"
+          class="form-control"
+          placeholder="Agregar juego favorito"
+        />
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="elliminarFavorito(i)"
+        >
+          X
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ========== End lisFavoritos ========== -->
 
   <div class="row">
     <div class="col-sm-12">
@@ -29,9 +82,12 @@
         type="button"
         class="btn btn-primary float-end"
         (click)="guardar()"
+        [disabled]="miFormulario.invalid"
       >
         Guardar
       </button>
     </div>
   </div>
 </form>
+
+<pre>{{ persona | json }}</pre>
