@@ -1,1 +1,86 @@
 <h2>Template</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="guardar()">
+      <!-- ========== Start producto ========== -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="ej. Crema Nutella..."
+            formControlName="nombre"
+          />
+          <span class="form-text text-danger" *ngIf="campoValido('nombre')"
+            >Debe llevar almenos 3 letras</span
+          >
+        </div>
+      </div>
+      <!-- ========== End producto ========== -->
+
+      <!-- ========== Start precio ========== -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="ej. $ 43.58"
+            formControlName="precio"
+          />
+          <span class="form-text text-danger" *ngIf="campoValido('precio')"
+            >El precio debe ser mayor a $0</span
+          >
+        </div>
+      </div>
+      <!-- ========== End precio ========== -->
+
+      <!-- ========== Start existencias producto ========== -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Existencias</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="ej. 5"
+            formControlName="existencias"
+          />
+          <span class="form-text text-danger" *ngIf="campoValido('existencias')"
+            >Existencias deben ser mayor a 1</span
+          >
+        </div>
+      </div>
+      <!-- ========== End existencias producto ========== -->
+
+      <!-- ========== Start buttons ========== -->
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">
+            <!-- [disabled]="miFormulario.invalid" -->
+            Guardar
+          </button>
+        </div>
+      </div>
+      <!-- ========== End buttons ========== -->
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre>{{ miFormulario.valid }}</pre>
+
+    <span>Pristine</span>
+    <pre>{{ miFormulario.pristine }}</pre>
+
+    <span>Touched</span>
+    <pre>{{ miFormulario.touched }}</pre>
+
+    <span>Value</span>
+    <pre>{{ miFormulario.value | json }}</pre>
+  </div>
+</div>

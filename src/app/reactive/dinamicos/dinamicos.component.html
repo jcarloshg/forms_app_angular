@@ -1,1 +1,69 @@
-<p>dinamicos works!</p>
+<h2>Reactivos: <small>Dinamicos</small></h2>
+<hr />
+
+<form autocomplete="off" [formGroup]="miFormulario" (submit)="guardar()">
+  <!-- ========== Start nombre ========== -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Nombre</label>
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        placeholder="Nombre del guey"
+        formControlName="nombre"
+      />
+      <span class="form-text text-danger" *ngIf="checkField('nombre')">
+        Campo obligatorio
+      </span>
+    </div>
+  </div>
+  <!-- ========== End nombre ========== -->
+
+  <!-- ========== Start Agregar ========== -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Agregar</label>
+    <div class="col-sm-9">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="Agregar juego favorito"
+          (keyup.enter)="({})"
+        />
+        <button class="btn btn-outline-primary" type="button" (click)="({})">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ========== End agregar ========== -->
+
+  <!-- ========== Start lisFavoritos ========== -->
+  <div class="mb-3 row">
+    <label class="col-sm-3 col-form-label">Favoritos</label>
+    <div class="col-sm-9">
+      <!-- <div
+        class="input-group mb-1"
+        *ngFor="let juego of persona.favoritos; let i = index"
+      >
+        <input class="form-control" />
+        <button class="btn btn-outline-danger" type="button" (click)="({})">
+          X
+        </button>
+      </div> -->
+    </div>
+  </div>
+  <!-- ========== End lisFavoritos ========== -->
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button
+        type="submit"
+        class="btn btn-primary float-end"
+        (click)="guardar()"
+      >
+        Guardar
+      </button>
+    </div>
+  </div>
+</form>
+
+<!-- <pre>{{ persona | json }}</pre> -->
