@@ -1,7 +1,8 @@
 <h2>Reactivos: <small>Dinamicos</small></h2>
 <hr />
 
-<form autocomplete="off" [formGroup]="miFormulario" (submit)="guardar()">
+<!-- when you click "Guardar", this sumit is executed double time (submit)="guardar()" -->
+<form autocomplete="off" [formGroup]="miFormulario">
   <!-- ========== Start nombre ========== -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Nombre</label>
@@ -25,10 +26,15 @@
       <div class="input-group">
         <input
           class="form-control"
+          [formControl]="nuevoFavorito"
           placeholder="Agregar juego favorito"
-          (keyup.enter)="({})"
+          (keyup.enter)="agregarFavorito()"
         />
-        <button class="btn btn-outline-primary" type="button" (click)="({})">
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="agregarFavorito()"
+        >
           Agregar
         </button>
       </div>
@@ -39,16 +45,20 @@
   <!-- ========== Start lisFavoritos ========== -->
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Favoritos</label>
-    <div class="col-sm-9">
-      <!-- <div
+    <div class="col-sm-9" formArrayName="favoritos">
+      <div
         class="input-group mb-1"
-        *ngFor="let juego of persona.favoritos; let i = index"
+        *ngFor="let favorito of favortiosArry.controls; let i = index"
       >
-        <input class="form-control" />
-        <button class="btn btn-outline-danger" type="button" (click)="({})">
+        <input class="form-control" [formControlName]="i" />
+        <button
+          class="btn btn-outline-danger"
+          type="button"
+          (click)="borrar(i)"
+        >
           X
         </button>
-      </div> -->
+      </div>
     </div>
   </div>
   <!-- ========== End lisFavoritos ========== -->
@@ -66,4 +76,17 @@
   </div>
 </form>
 
-<!-- <pre>{{ persona | json }}</pre> -->
+<hr />
+<span>VAlid</span>
+<pre>{{ miFormulario.valid }}</pre>
+
+<hr />
+<span>Value</span>
+<pre>{{ miFormulario.value | json }}</pre>
+<br />
+
+<hr />
+<span>Form control nuevo favorito</span>
+<pre>{{ nuevoFavorito.valid | json }}</pre>
+<pre>{{ nuevoFavorito.value | json }}</pre>
+<br />
