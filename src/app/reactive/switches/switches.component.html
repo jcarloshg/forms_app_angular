@@ -1,7 +1,7 @@
 <h2>Reactivos Switches</h2>
 <hr />
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
   <!-- ========== Start radio ========== -->
   <div class="row mb-3">
     <label class="col-sm-3 col-form-label">Genero</label>
@@ -11,7 +11,7 @@
           class="form-check-input"
           type="radio"
           value="M"
-          name="radioGenero"
+          formControlName="genero"
           id="radioMasculino"
         />
         <label class="form-check-label" for="radioMasculino"> Maculino </label>
@@ -21,7 +21,7 @@
           class="form-check-input"
           type="radio"
           value="F"
-          name="radioGenero"
+          formControlName="genero"
           id="radioFemenino"
         />
         <label class="form-check-label" for="radioFemenino"> Femenino </label>
@@ -38,6 +38,7 @@
         <input
           class="form-check-input"
           type="checkbox"
+          formControlName="notificaciones"
           id="flexSwitchCheckChecked"
         />
         <label class="form-check-label" for="flexSwitchCheckChecked"
@@ -53,7 +54,12 @@
     <label class="col-sm-3 col-form-label"></label>
     <div class="col-sm-9">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="flexCheckDefault" />
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexCheckDefault"
+          formControlName="condiciones"
+        />
         <label class="form-check-label" for="flexCheckDefault">
           Terminos y condiciones
         </label>
@@ -63,19 +69,25 @@
 
   <div class="row">
     <div class="col">
-      <button type="submit" class="btn btn-primary float-end">Guardar</button>
+      <button
+        type="submit"
+        class="btn btn-primary float-end"
+        (onclick)="guardar()"
+      >
+        Guardar
+      </button>
     </div>
   </div>
 </form>
 
-<!-- <h3>valid</h3>
-<pre>{{ miFormulario.valid | json }}</pre>
-<br />
-
-<h3>Terminos</h3>
-<pre>{{ miFormulario.controls["terminosYCondiciones"].errors | json }}</pre>
-<br />
-
 <h3>value</h3>
 <pre>{{ miFormulario.value | json }}</pre>
-<br /> -->
+<br />
+
+<h3>Persona</h3>
+<pre>{{ persona | json }}</pre>
+<br />
+
+<h3>Valid</h3>
+<pre>{{ miFormulario.valid }}</pre>
+<br />
