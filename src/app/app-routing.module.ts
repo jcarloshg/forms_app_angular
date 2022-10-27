@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./reactive/reactive.module').then(m => m.ReactiveModule)
   },
   {
+    path: 'registro',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
     path: '**',
     // loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
     redirectTo: 'template'

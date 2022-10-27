@@ -1,0 +1,130 @@
+<h2>Validaciones reactivas</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form autocomplete="off" [formGroup]="registerForm">
+      <!-- nombre -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Nombre del usuario"
+            formControlName="nombre"
+          />
+          <span class="form-text text-danger" *ngIf="validFild('nombre')">
+            Debe ser formato nombre apellido</span
+          >
+        </div>
+      </div>
+
+      <!-- emai -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Correo electronico</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="user@email.com"
+            formControlName="correo"
+          />
+          <span class="form-text text-danger" *ngIf="validFild('correo')">
+            {{ errMessage }}
+          </span>
+          <!--
+          <span class="form-text text-danger" *ngIf="emailRequired()">
+            Correo obligatorio
+          </span>
+          <span class="form-text text-danger" *ngIf="emailFormato()">
+            No tiene formato de correo
+          </span>
+          <span class="form-text text-danger" *ngIf="emailExistente()">
+            El correo ya existe
+          </span>
+        --></div>
+      </div>
+
+      <!-- username -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Username</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Codigo de usuario"
+            formControlName="username"
+          />
+          <span class="form-text text-danger" *ngIf="validFild('username')">
+            No puede ser jcarloshg
+          </span>
+        </div>
+      </div>
+
+      <!-- password -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Contrasenia</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="contrasenia"
+          />
+          <span class="form-text text-danger" *ngIf="emailRequired()">
+            Debe ser mayor a 6 caracteres
+          </span>
+        </div>
+      </div>
+
+      <!-- confi pass -->
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Confirmar contrasenia</label>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="confiContrasenia"
+          />
+          <span
+            class="form-text text-danger"
+            *ngIf="validFild('confiContrasenia')"
+          >
+            Las contrasenias deben coincidir
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            (click)="submitFormuario()"
+            [disabled]="registerForm.pending"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h3>Value</h3>
+<pre>{{ registerForm.value | json }}</pre>
+
+<h3>Status</h3>
+<pre>{{ registerForm.status }}</pre>
+
+<h3>Valid</h3>
+<pre>{{ registerForm.valid }}</pre>
+
+<h3>Nombre's Error</h3>
+<pre>{{ registerForm.controls["nombre"].errors | json }}</pre>
+
+<h3>emails's Error</h3>
+<pre>{{ registerForm.controls["correo"].errors | json }}</pre>
+
+<h3>emails's Error</h3>
+<pre>{{ registerForm.controls["username"].errors | json }}</pre>
